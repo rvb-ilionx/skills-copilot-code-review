@@ -30,24 +30,74 @@
   --error-light: #ffebee;
   --info: #0c5460;
   --info-light: #d1ecf1;
+  --brand-accent: #0f766e;
+  --brand-accent-light: #99f6e4;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
   line-height: 1.4;
   color: var(--text-primary);
   max-width: 1200px;
   margin: 0 auto;
   padding: 12px;
-  background-color: var(--background);
+  background:
+    radial-gradient(circle at 10% 10%, #ffffff 0%, #eef5ff 35%, #e9f4f2 100%);
   font-size: 0.9rem;
+}
+
+.announcement-banner-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.announcement-banner {
+  background: linear-gradient(135deg, var(--brand-accent) 0%, #14b8a6 100%);
+  color: #ffffff;
+  text-align: left;
+  padding: 14px 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(15, 118, 110, 0.22);
+  animation: bannerSlideIn 0.45s ease both;
+}
+
+.announcement-banner-content {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.announcement-icon {
+  font-size: 1.1rem;
+}
+
+.announcement-message {
+  margin-bottom: 3px;
+}
+
+.announcement-meta {
+  font-size: 0.78rem;
+  opacity: 0.92;
+}
+
+@keyframes bannerSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 header {
@@ -433,7 +483,8 @@ button {
 }
 
 .close-modal,
-.close-login-modal {
+.close-login-modal,
+.close-announcements-modal {
   position: absolute;
   right: 12px;
   top: 8px;
@@ -617,6 +668,9 @@ footer {
   position: absolute;
   top: 10px;
   right: 15px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 #user-status {
@@ -666,9 +720,138 @@ footer {
 }
 
 .announcement-banner {
-  background-color: var(--success);
-  color: var(--primary-text);
-  text-align: center;
-  padding: 15px;
-  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.announcements-modal-content {
+  max-width: 800px;
+  width: min(95vw, 800px);
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.modal-subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  color: #334155;
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.86rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+.announcement-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.announcement-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.announcement-list-section {
+  margin-top: 18px;
+}
+
+.announcement-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.announcement-table th,
+.announcement-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border-light);
+  text-align: left;
+  vertical-align: top;
+}
+
+.announcement-table th {
+  background-color: #f8fafc;
+  color: #334155;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.announcement-actions-cell {
+  white-space: nowrap;
+  display: flex;
+  gap: 8px;
+}
+
+.announcement-edit-button {
+  background-color: #0ea5e9;
+}
+
+.announcement-delete-button {
+  background-color: #ef4444;
+}
+
+.cancel-btn {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+.empty-announcements {
+  padding: 12px;
+  color: var(--text-secondary);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+@media (max-width: 767px) {
+  #user-controls {
+    position: static;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .announcement-actions-cell {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
